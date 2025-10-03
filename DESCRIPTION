@@ -21,6 +21,8 @@ License: GPL-2 | file LICENSE
 Encoding: UTF-8
 URL: http://www.ggtern.com
 Collate: 
+    '000-compat.R'
+    'utilities.R'
     'aes.R'
     'annotation-raster-tern.R'
     'annotation-tern.R'
@@ -31,6 +33,7 @@ Collate:
     'depreciated.R'
     'doc-data.R'
     'doc-theme-convenience.R'
+    'legend-draw-tern.R'
     'geom-Xisoprop.R'
     'geom-Xline.R'
     'geom-confidence-tern.R'
@@ -52,7 +55,6 @@ Collate:
     'ggtern-package.R'
     'labels-new.R'
     'labels-percent.R'
-    'legend-draw-tern.R'
     'modifications-gridExtra.R'
     'onLoad.R'
     'plot-build.R'
@@ -94,7 +96,6 @@ Collate:
     'theme-zoom.R'
     'theme.R'
     'utilities-help.R'
-    'utilities.R'
 NeedsCompilation: no
 Repository: CRAN
 RoxygenNote: 7.3.2

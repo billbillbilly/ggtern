@@ -117,7 +117,7 @@ to direct more attention towards the data.
 }
 
 \item{\code{theme_dark}}{
-The dark cousin of \code{theme_light}, with similar line sizes but a dark background. 
+The dark cousin of \code{theme_light}, with similar line sizes but a dark background.
 Useful to make thin coloured lines pop out.
 }
 
@@ -141,7 +141,7 @@ A classic-looking theme, with x and y axis lines and no gridlines.
 A theme with grey background, red, green and blue axes and gridlines
 }
 
-\item{\code{theme_void}}{ 
+\item{\code{theme_void}}{
 A completely empty theme.
 }
 
@@ -203,7 +203,7 @@ grid.arrange(grobs=plotThemes(themesNew),top = "Collection of Themes (New Themes
 
 }
 \references{
-Okabe, Masataka, and Kei Ito. "How to make figures and presentations that are friendly to color blind people." 
+Okabe, Masataka, and Kei Ito. "How to make figures and presentations that are friendly to color blind people."
 University of Tokyo (2002). http://jfly.iam.u-tokyo.ac.jp/color/
 }
 \author{

@@ -5,7 +5,7 @@
 \alias{constructor}
 \title{ggtern Constructor}
 \usage{
-ggtern(data = NULL, mapping = aes(), ..., environment = parent.frame())
+ggtern(data = NULL, mapping = aes(), ...)
 }
 \arguments{
 \item{data}{Default dataset to use for plot. If not already a data.frame,
@@ -16,15 +16,12 @@ must be supplied in each layer added to the plot.}
 If not specified, must be supplied in each layer added to the plot.}
 
 \item{...}{additional arguments passed through to \code{\link{ggplot}}}
-
-\item{environment}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Used prior to tidy
-evaluation.}
 }
 \value{
 \code{ggtern(...)} returns an object of class \code{ggplot}.
 }
 \description{
-Plots in \code{ggtern} are instigated via the default constructor: \code{ggtern(...)}, which is essentially a convenience wrapper for the following: 
+Plots in \code{ggtern} are instigated via the default constructor: \code{ggtern(...)}, which is essentially a convenience wrapper for the following:
 \code{ggplot{...} + coord_tern()}, indeed, if one wishes to use \code{ggplot{...} + coord_tern()} then this is quite satisfactory.
 }
 \examples{

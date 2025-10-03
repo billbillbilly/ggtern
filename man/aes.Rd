@@ -19,7 +19,7 @@ aes(x, y, z, ...)
 Modified Aesthetic Mappings
 }
 \details{
-An extension to the base aes functin from ggplot2, this is modified to handle a default z mapping 
+An extension to the base aes functin from ggplot2, this is modified to handle a default z mapping
 for application in ternary phase diagrams. Does not alter the standard behaviour.
 }
 \seealso{
