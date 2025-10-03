@@ -11,7 +11,7 @@
 #' @examples
 #' ggtern(data=data.frame(x=1,y=1,z=1),aes(x,y,z)) + geom_point()
 #' @export
-ggtern <- function(data=NULL,mapping=ggplot2::aes(),...){
+ggtern <- function(data=NULL,mapping=aes(),...){
   p <- ggplot2::ggplot(data = data, mapping = mapping, ...) + coord_tern()
   return(p)
 }
