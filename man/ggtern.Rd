@@ -5,7 +5,7 @@
 \alias{constructor}
 \title{ggtern Constructor}
 \usage{
-ggtern(data = NULL, mapping = ggplot2::aes(), ...)
+ggtern(data = NULL, mapping = aes(), ...)
 }
 \arguments{
 \item{data}{Default dataset to use for plot. If not already a data.frame,
