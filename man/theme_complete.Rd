@@ -4,11 +4,11 @@
 \alias{theme_complete}
 \title{List of Available Themes}
 \description{
-\code{ggtern} ships with a number of complete themes, summarized as follows. 
+\code{ggtern} ships with a number of complete themes, summarized as follows.
 These themes combine the base themes available to \code{ggplot2} and a number of NEW themes, which
 are unique to \code{ggtern}.
 \describe{
- \item{ Black and White Theme:}{ 
+ \item{ Black and White Theme:}{
    \code{\link[=theme_bw]{theme_bw(...)}}
  }
  \item{Minimal Theme:}{

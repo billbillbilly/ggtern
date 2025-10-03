@@ -24,32 +24,3 @@ if (!exists("find_global_tern", inherits = FALSE)) {
     stop("Global '", name, "' not found (check collate order).")
   }
 }
-
-# ---- ggplot2 4.0 theme element shims (inside ggtern namespace) ----
-# Convert old 'size=' to 'linewidth=' and coerce logicals to numeric.
-.ele_linewidth <- function(x, default = 0.5) {
-  if (is.null(x)) return(NULL)
-  if (is.logical(x)) return(if (isTRUE(x)) default else 0)
-  as.numeric(x)
-}
-
-# Wrap element_rect: map size->linewidth, sanitize linewidth
-element_rect <- local({
-  # Keep a handle to ggplot2's real element_rect
-  .gg <- get("element_rect", envir = asNamespace("ggplot2"))
-  function(..., size = NULL, linewidth = NULL) {
-    if (is.null(linewidth) && !is.null(size)) linewidth <- size
-    linewidth <- .ele_linewidth(linewidth)
-    .gg(..., linewidth = linewidth)
-  }
-})
-
-# Wrap element_line similarly (drop unsupported 'arrow' if present)
-element_line <- local({
-  .gg <- get("element_line", envir = asNamespace("ggplot2"))
-  function(..., size = NULL, linewidth = NULL) {
-    if (is.null(linewidth) && !is.null(size)) linewidth <- size
-    linewidth <- .ele_linewidth(linewidth)
-    .gg(..., linewidth = linewidth)
-  }
-})

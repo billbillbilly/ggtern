@@ -1,10 +1,10 @@
 #' List of Available Themes
-#' 
-#' \code{ggtern} ships with a number of complete themes, summarized as follows. 
+#'
+#' \code{ggtern} ships with a number of complete themes, summarized as follows.
 #' These themes combine the base themes available to \code{ggplot2} and a number of NEW themes, which
 #' are unique to \code{ggtern}.
 #' \describe{
-#'  \item{ Black and White Theme:}{ 
+#'  \item{ Black and White Theme:}{
 #'    \code{\link[=theme_bw]{theme_bw(...)}}
 #'  }
 #'  \item{Minimal Theme:}{
@@ -91,7 +91,7 @@ NULL
 #' }
 #'
 #' \item{\code{theme_dark}}{
-#' The dark cousin of \code{theme_light}, with similar line sizes but a dark background. 
+#' The dark cousin of \code{theme_light}, with similar line sizes but a dark background.
 #' Useful to make thin coloured lines pop out.
 #' }
 #'
@@ -106,47 +106,47 @@ NULL
 #' \item{\code{theme_classic}}{
 #' A classic-looking theme, with x and y axis lines and no gridlines.
 #' }
-#' 
+#'
 #' \item{\code{theme_rgbw}}{
 #'  A theme with white background, red, green and blue axes and gridlines
 #' }
-#' 
+#'
 #' \item{\code{theme_rgbg}}{
 #' A theme with grey background, red, green and blue axes and gridlines
 #' }
 #'
-#' \item{\code{theme_void}}{ 
+#' \item{\code{theme_void}}{
 #' A completely empty theme.
 #' }
-#' 
+#'
 #' \item{\code{theme_custom}}{
 #' Theme with custom basic colours
 #' }
-#' 
+#'
 #' \item{\code{theme_matrix}}{
 #' Theme with very dark background and bright green features
 #' }
-#' 
+#'
 #' \item{\code{theme_tropical}}{
 #' Theme with tropical colours
 #' }
-#' 
+#'
 #' \item{\code{theme_bluelight}}{
 #' A blue theme with light background and dark features
 #' }
-#' 
+#'
 #' \item{\code{theme_bluedark}}{
 #' A blue theme with dark background and light features
 #' }
-#' 
+#'
 #' \item{\code{theme_bvbw}}{
 #' A black/vermillion/blue theme with white background, for colorblind sensitive readers, see references.
 #' }
-#' 
+#'
 #' \item{\code{theme_bvbg}}{
 #' A black/vermillion/blue theme with grey background, for colorblind sensitive readers, see references.
 #' }
-#' 
+#'
 #' }
 #'
 #' @examples
@@ -156,7 +156,7 @@ NULL
 #'               'dark','minimal','classic','void')
 #' themesNew = c('custom','darker','rgbw','rgbg','tropical',
 #'               'matrix','bluelight','bluedark','bvbw','bvbg')
-#' 
+#'
 #' #Iterate over all the suffixes, creating a list of plots
 #' plotThemes = function(themes){
 #'    grobs = lapply(themes,function(x){
@@ -167,18 +167,18 @@ NULL
 #'    })
 #'    grobs
 #' }
-#' 
+#'
 #' #Arrange the Original Themes
 #' grid.arrange(grobs=plotThemes(themesOrg),top = "Collection of Themes (Original)")
-#' 
+#'
 #' #Arrange the New Themes
 #' grid.arrange(grobs=plotThemes(themesNew),top = "Collection of Themes (New Themes)")
 #' }
-#' 
-#' @references 
-#' Okabe, Masataka, and Kei Ito. "How to make figures and presentations that are friendly to color blind people." 
+#'
+#' @references
+#' Okabe, Masataka, and Kei Ito. "How to make figures and presentations that are friendly to color blind people."
 #' University of Tokyo (2002). http://jfly.iam.u-tokyo.ac.jp/color/
-#' 
+#'
 #' @author Nicholas Hamilton
 #' @name ggtern_themes
 #' @rdname ggtern_themes
@@ -189,49 +189,49 @@ NULL
 theme_ggtern <- function(base_size = 11, base_family = ""){
   #Base ggplot2 theme
   baseTheme = get("theme_gray",asNamespace("ggplot2"))
-  
+
   #Create Instance of the base theme
   base = baseTheme(base_size = base_size, base_family = base_family)
-  
-  #Start with the base theme 
+
+  #Start with the base theme
   base %+replace%
-  
+
   #Start with additional elements
   theme(
-    
+
     ##TERNARY PANEL
     tern.panel.background          = element_rect(),  #Panel is the triangular region
     tern.plot.background           = element_rect(), #Plot  is the rectangular outer region
     tern.plot.latex                = getOption('tern.latex'), #Parse Labels as Latex
-    
+
     ##AXIS ARROWS
     #tern.axis                     = element_line(),
     tern.axis.hshift               = getOption("tern.hshift"),
     tern.axis.vshift               = getOption("tern.vshift"),
     tern.axis.clockwise            = getOption("tern.clockwise"),
-    
+
     tern.axis.line                 = element_line(),
     tern.axis.line.T               = element_line(),
     tern.axis.line.L               = element_line(),
     tern.axis.line.R               = element_line(),
     tern.axis.line.ontop           = getOption("tern.line.ontop"),
-    
+
     #Axis Titles
     tern.axis.title                = element_text(),
     tern.axis.title.T              = element_text(),
     tern.axis.title.L              = element_text(),
     tern.axis.title.R              = element_text(),
-    tern.axis.title.show           = getOption("tern.title.show"), 
-    
+    tern.axis.title.show           = getOption("tern.title.show"),
+
     #Axis Text
     tern.axis.text                 = element_text(),
     tern.axis.text.T               = element_text(),
     tern.axis.text.L               = element_text(),
     tern.axis.text.R               = element_text(),
     tern.axis.text.show            = getOption("tern.text.show"),
-    
+
     #Arrow
-    tern.axis.arrow                = element_line(lineend = getOption('tern.arrow')),
+    tern.axis.arrow                = element_line(lineend = getOption('tern.lineend', 'butt')),
     tern.axis.arrow.T              = element_line(),
     tern.axis.arrow.L              = element_line(),
     tern.axis.arrow.R              = element_line(),
@@ -243,7 +243,7 @@ theme_ggtern <- function(base_size = 11, base_family = ""){
     tern.axis.arrow.show           = getOption("tern.arrow.show"),
     tern.axis.arrow.start          = getOption("tern.arrow.start"),
     tern.axis.arrow.finish         = getOption("tern.arrow.finish"),
-    
+
     #Ticks
     tern.axis.ticks                = element_line(),
     tern.axis.ticks.major          = element_line(),
@@ -259,7 +259,7 @@ theme_ggtern <- function(base_size = 11, base_family = ""){
     tern.axis.ticks.minor.T        = element_line(),
     tern.axis.ticks.minor.L        = element_line(),
     tern.axis.ticks.minor.R        = element_line(),
-    
+
     #Panel Grids
     #tern.panel.grid                = element_line(),
     tern.panel.grid.major          = element_line(),
@@ -282,7 +282,7 @@ theme_ggtern <- function(base_size = 11, base_family = ""){
 #' @rdname ggtern_themes
 #' @export
 theme_gray  <- function(base_size = 11, base_family = ""){
-  base = theme_ggtern(base_size = base_size, base_family = base_family) 
+  base = theme_ggtern(base_size = base_size, base_family = base_family)
   base %+replace%
   theme(
     tern.plot.background  = element_rect(size=NA,color=NA),
@@ -301,7 +301,7 @@ theme_grey <- theme_gray
 #' @export
 theme_bw <- function(base_size = 12, base_family = "") {
   base = ggplot2::theme_bw(base_size,base_family)
-  theme_ggtern(base_size,base_family) %+replace% 
+  theme_ggtern(base_size,base_family) %+replace%
   base %+replace%
   theme(
     tern.plot.background  = element_rect(size=NA,color=NA),
@@ -333,7 +333,7 @@ theme_linedraw <- function(base_size = 12, base_family = "") {
 #' @rdname ggtern_themes
 #' @export
 theme_light <- function(base_size = 12, base_family = "") {
-  base     = ggplot2::theme_light(base_size, base_family) 
+  base     = ggplot2::theme_light(base_size, base_family)
   baseline = element_line(color = base$panel.border$colour,
                           size  = base$panel.border$size/2)
   theme_ggtern() %+replace%
@@ -372,7 +372,7 @@ theme_minimal <- function(base_size = 12, base_family = "") {
 #' @export
 theme_classic <- function(base_size = 12, base_family = ""){
   base = ggplot2::theme_classic(base_size, base_family)
-  
+
   theme_bw(base_size, base_family) %+replace%
     base %+replace%
     theme(
@@ -393,7 +393,7 @@ theme_classic <- function(base_size = 12, base_family = ""){
 #' @export
 theme_dark <- function(base_size = 12, base_family = "") {
   base = ggplot2::theme_dark(base_size,base_family)
-  theme_ggtern(base_size,base_family) %+replace% 
+  theme_ggtern(base_size,base_family) %+replace%
   base %+replace%
   theme(
     tern.plot.background  = element_rect(size=NA,color=NA),
@@ -447,10 +447,10 @@ theme_custom <- function(base_size             = 12,
                          col.L                 = 'black',
                          col.R                 = 'black',
                          col.grid.minor        = "white"){
-  
+
   #Start with the base theme, then replace some elements
   theme_ggtern(base_size, base_family) %+replace%
-  
+
   #Elements to replace
   theme(
     tern.plot.background    = element_rect(fill  = tern.plot.background,size=NA,color=NA),
@@ -490,7 +490,7 @@ theme_rgbw  <- function(base_size = 12, base_family = ""){
   #Start with grey theme, then overwrite with custom theme
   #theme_grey(base_size, base_family) %+replace%
   theme_custom(base_size,base_family,col.T='darkred',col.L='darkblue',col.R='darkgreen') +
-    
+
   #Add, not replace
   theme(
     tern.panel.background  = element_rect(fill  = 'white'),
@@ -502,10 +502,10 @@ theme_rgbw  <- function(base_size = 12, base_family = ""){
 #' @rdname ggtern_themes
 #' @export
 theme_rgbg <- function(base_size = 12, base_family = ""){
-  
+
   #Start with rgbw theme, and modify slightly
-  theme_rgbw(base_size, base_family) + 
-    
+  theme_rgbw(base_size, base_family) +
+
   #Add to, not replace
   theme(
     tern.panel.background  = element_rect(fill  = 'gray92'),
@@ -518,8 +518,8 @@ theme_rgb <- theme_rgbg
 #' @export
 theme_matrix = function(base_size = 12, base_family = ""){
     featA = 'green'; featAG = 'darkgreen'; featB = NA; featC = 'grey15'; featD = 'grey10'; featE = 'grey15'
-    theme_custom(base_size             = base_size, 
-                 base_family           = base_family, 
+    theme_custom(base_size             = base_size,
+                 base_family           = base_family,
                  tern.plot.background  = NULL, #FORCE INHERIT
                  tern.panel.background = featC,
                  col.T                 = featA,
@@ -539,11 +539,11 @@ theme_matrix = function(base_size = 12, base_family = ""){
 #' @rdname ggtern_themes
 #' @export
 theme_tropical = function(base_size = 12, base_family = ""){
-  col.T = '#fe8f0f'; col.L = '#f7325e'; col.R = '#7dc410'; col.text  = '#0264ed'; 
-  col.bg.strip = 'gray90'; col.bg = 'white'; 
-  theme_custom(base_size             = base_size, 
-               base_family           = base_family, 
-               tern.plot.background  = NULL, 
+  col.T = '#fe8f0f'; col.L = '#f7325e'; col.R = '#7dc410'; col.text  = '#0264ed';
+  col.bg.strip = 'gray90'; col.bg = 'white';
+  theme_custom(base_size             = base_size,
+               base_family           = base_family,
+               tern.plot.background  = NULL,
                tern.panel.background = col.bg,
                col.T                 = col.T,
                col.L                 = col.L,
@@ -558,10 +558,10 @@ theme_tropical = function(base_size = 12, base_family = ""){
 #' @rdname ggtern_themes
 #' @export
 theme_bluedark = function(base_size = 12, base_family = ""){
-  featA = 'white'; featAG = 'white'; featB = NA; 
+  featA = 'white'; featAG = 'white'; featB = NA;
   featC = '#000080'; featD = '#000040'; featE = '#000060'
-  theme_custom(base_size             = base_size, 
-               base_family           = base_family, 
+  theme_custom(base_size             = base_size,
+               base_family           = base_family,
                tern.plot.background  = NULL, #FORCE INHERIT
                tern.panel.background = featC,
                col.T                 = featA,
@@ -581,10 +581,10 @@ theme_bluedark = function(base_size = 12, base_family = ""){
 #' @rdname ggtern_themes
 #' @export
 theme_bluelight = function(base_size = 12, base_family = ""){
-  featA = '#000040'; featAG = 'white'; featB = NA; 
+  featA = '#000040'; featAG = 'white'; featB = NA;
   featC = '#000080'; featD = 'white'; featE = 'white'
-  theme_custom(base_size             = base_size, 
-               base_family           = base_family, 
+  theme_custom(base_size             = base_size,
+               base_family           = base_family,
                tern.plot.background  = NULL, #FORCE INHERIT
                tern.panel.background = featC,
                col.T                 = featA,
@@ -610,7 +610,7 @@ theme_bvbw  <- function(base_size = 12, base_family = ""){
   col.L = rgb2hex(213,94,0)
   col.R = rgb2hex(0,114,178)
   theme_custom(base_size,base_family,col.T=col.T,col.L=col.L,col.R=col.R) +
-    
+
     #Add, not replace
     theme(
       tern.panel.background  = element_rect(fill  = 'white'),
@@ -622,10 +622,10 @@ theme_bvbw  <- function(base_size = 12, base_family = ""){
 #' @rdname ggtern_themes
 #' @export
 theme_bvbg <- function(base_size = 12, base_family = ""){
-  
+
   #Start with theme_bvbw  theme, and modify slightly
-  theme_bvbw(base_size, base_family) + 
-    
+  theme_bvbw(base_size, base_family) +
+
     #Add to, not replace
     theme(
       tern.panel.background  = element_rect(fill  = 'gray92'),

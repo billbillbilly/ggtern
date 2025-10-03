@@ -1,57 +1,60 @@
-#Expose some required functions from the parent ggplot2 namespace
+# Expose some required functions from the parent ggplot2 namespace
 .getFunctions <- function(){
 
-  #' OLD FUNCTIONS  
-  #'new_panel','train_layout','train_position','train_ranges','map_position','map_layout','reset_scales','facet_render',
-  #'xlabel','ylabel'
-  
-  .functions.ggplot2   = c('create_layout',
-                           #'expand_default', ## REMOVED
-                           'plot_theme',
-                           'element_render',# 'message_wrap',
-                           'set_last_plot','make_labels',
-                        # 'build_guides',
-                           'is.zero','add_ggplot','labelGrob',
-                           'is.layer','is.facet','is.Coord','GeomSegment',
-                           '.element_tree',
-                           # 'el_def', ## NOW EXPORTED
-                           'expand_limits_scale', ## NEW
-                           'view_scale_primary', ## NEW
-                           'view_scale_secondary', ## NEW
-                           'combine_elements','aes_to_scale',
-                           'is.Coord','is.facet','is.layer','make_labels','update_labels','update_guides',
-                           # 'update_theme', ## REMOVED
-                           'aes_to_scale',
-                        # 'scales_add_missing',
-                           'scales_list',
-                           'guides_list',
-                        # 'scales_transform_df',
-                        # 'scales_map_df',
-                        # 'scales_train_df',
-                           'predictdf',
-                           # 'contour_lines', ## REMOVED
-                           'check_required_aesthetics','snake_class',
-                           'ggname','ggplot_gtable','camelize',
-                           'element_grob.element_line','element_grob.element_rect','element_grob.element_text','element_grob.element_blank',
-                           'plot_clone','compute_just','labelGrob',
-                           'hexGrob',
-                           # 'try_require', ## REMOVED
-                           'hex_binwidth','hexBinSummarise',
-                           'find_args','is.margin','justify_grobs',
-                           'attach_plot_env',
-                           'by_layer',
-                           'table_add_tag',
-                           'table_add_legends',
-                           'table_add_tag'
-                           )
-  .functions.gridExtra  = c('latticeGrob')
-    .functions          = rbind(data.frame(p='ggplot2',  f=unique(.functions.ggplot2)),
-                                data.frame(p='gridExtra',f=unique(.functions.gridExtra)))
-  
-    structure(
-      mapply(function(f,p){ getFromNamespace(f,p) },as.character(.functions$f), as.character(.functions$p)),
-      class=c("internal")
-    )
+  wanted_gp <- c(
+    'create_layout',
+    'plot_theme',
+    'element_render',
+    'set_last_plot','make_labels',
+    'add_ggplot','labelGrob',
+    'is.layer','is.facet','is.Coord','GeomSegment',
+    '.element_tree',
+    'expand_limits_scale',
+    'view_scale_primary','view_scale_secondary',
+    'combine_elements','aes_to_scale',
+    'scales_list','guides_list',
+    'predictdf',
+    'check_required_aesthetics','snake_class',
+    'ggname','ggplot_gtable','camelize',
+    'element_grob.element_line','element_grob.element_rect',
+    'element_grob.element_text','element_grob.element_blank',
+    'plot_clone','compute_just','labelGrob',
+    'hexGrob','hex_binwidth','hexBinSummarise',
+    'find_args','is.margin','justify_grobs',
+    'attach_plot_env',
+    'by_layer',
+    'table_add_tag',
+    'table_add_legends' # ok if missing; handled below
+    # NOTE: 'update_guides' was removed in ggplot2 >= 3.5, so we don't demand it here.
+  )
+
+  safe_get <- function(pkg, fname) {
+    ns <- asNamespace(pkg)
+    if (exists(fname, envir = ns, inherits = FALSE)) {
+      get(fname, envir = ns, inherits = FALSE)
+    } else {
+      NULL
+    }
+  }
+
+  gp_list <- setNames(lapply(wanted_gp, function(f) safe_get("ggplot2", f)), wanted_gp)
+  ge_list <- setNames(lapply("latticeGrob", function(f) safe_get("gridExtra", f)), "latticeGrob")
+
+  # ---- Shims for removed internals (ggplot2 >= 3.5/4.0) ----
+  # Some old ggtern code may call ggint$update_guides(); provide a no-op that returns an empty list.
+  if (is.null(gp_list[["update_guides"]])) {
+    gp_list[["update_guides"]] <- function(...) list()
+  }
+  # If table_add_legends disappeared, offer a pass-through that returns its input layout unchanged.
+  if (is.null(gp_list[["table_add_legends"]])) {
+    gp_list[["table_add_legends"]] <- function(plot_table, guides, theme, guides_position = "right", ...) {
+      plot_table
+    }
+  }
+
+  out <- c(gp_list, ge_list)
+  class(out) <- "internal"
+  out
 }
 
 ggint <- .getFunctions()
