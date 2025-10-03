@@ -5,7 +5,12 @@
 \alias{constructor}
 \title{ggtern Constructor}
 \usage{
-ggtern(data = NULL, mapping = aes(), ..., environment = parent.frame())
+ggtern(
+  data = NULL,
+  mapping = ggplot2::aes(),
+  ...,
+  environment = parent.frame()
+)
 }
 \arguments{
 \item{data}{Default dataset to use for plot. If not already a data.frame,
@@ -24,7 +29,7 @@ evaluation.}
 \code{ggtern(...)} returns an object of class \code{ggplot}.
 }
 \description{
-Plots in \code{ggtern} are instigated via the default constructor: \code{ggtern(...)}, which is essentially a convenience wrapper for the following: 
+Plots in \code{ggtern} are instigated via the default constructor: \code{ggtern(...)}, which is essentially a convenience wrapper for the following:
 \code{ggplot{...} + coord_tern()}, indeed, if one wishes to use \code{ggplot{...} + coord_tern()} then this is quite satisfactory.
 }
 \examples{
